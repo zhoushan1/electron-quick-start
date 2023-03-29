@@ -3,6 +3,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 // const scratchWords = require('./components/scratch-words')
 require('./components/scratch-words')
+require('./components/popover')
 
 function createWindow() {
   // Create the browser window.
