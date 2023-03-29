@@ -1,5 +1,8 @@
 .popover-wrap {
+  display: flex;
+  align-items: center;
   width: 100%;
   background-color: #fff;
   color: #333;
+  gap: 8px;
 }

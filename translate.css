@@ -1,0 +1,18 @@
+.translate {
+  padding: 10px;
+}
+
+.from-text-area {
+  min-height: 64px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.action {
+  padding: 10px 0;
+}
+
+.summaryTextArea {
+  padding: 10px;
+  border: 1px solid #ccc;
+}

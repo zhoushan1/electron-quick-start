@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI总结</title>
+    <link href="./translate.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="translate">
+      <div id="summaryTextArea" class="summaryTextArea"></div>
+    </div>
+    <script>
+      // 在文本改变时将文本内容发送给主进程
+      const { ipcRenderer } = require('electron')
+      window.onload = () => {
+        const textArea = document.getElementById('summaryTextArea')
+        window.setSummaryTextArea = (text) => {
+          textArea.innerHTML = text
+        }
+      }
+    </script>
+  </body>
+</html>

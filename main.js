@@ -4,12 +4,14 @@ const path = require('path')
 // const scratchWords = require('./components/scratch-words')
 require('./components/scratch-words')
 require('./components/popover')
+require('./components/translate')
 
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
