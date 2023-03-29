@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+// const scratchWords = require('./components/scratch-words')
 require('./components/scratch-words')
 
 function createWindow() {
@@ -10,6 +11,11 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      // 取消上下文隔离
+      contextIsolation: false,
+      // 开启remote
+      enableRemoteModule: true,
     },
   })
 
@@ -25,6 +31,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
+  // scratchWords.getGlobalShortcut()
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
