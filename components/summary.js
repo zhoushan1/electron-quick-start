@@ -26,12 +26,14 @@ function createWindow() {
 
 function showSummaryPopover(text) {
   const mousePosition = screen.getCursorScreenPoint()
-  const { width, height } = mainWindow.getBounds()
+  if (mainWindow) {
+    const { width, height } = mainWindow.getBounds()
 
-  mainWindow.setPosition(mousePosition.x, mousePosition.y - height)
-  mainWindow.show()
-  setSummaryTextArea('')
-  setSummaryTextArea('loading...')
+    mainWindow.setPosition(mousePosition.x, mousePosition.y - height)
+    mainWindow.show()
+    setSummaryTextArea('')
+    setSummaryTextArea('loading...')
+  }
 }
 
 app.whenReady().then(() => {

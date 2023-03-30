@@ -29,12 +29,14 @@ function createWindow() {
 
 function showTransPopover(text) {
   const mousePosition = screen.getCursorScreenPoint()
-  const { width, height } = mainWindow.getBounds()
+  if (mainWindow) {
+    const { width, height } = mainWindow.getBounds()
 
-  mainWindow.setPosition(mousePosition.x, mousePosition.y - height)
-  mainWindow.show()
-  setText(text)
-  setToText('loading...')
+    mainWindow.setPosition(mousePosition.x, mousePosition.y - height)
+    mainWindow.show()
+    setText(text)
+    setToText('loading...')
+  }
 }
 
 // 当应用准备好时触发

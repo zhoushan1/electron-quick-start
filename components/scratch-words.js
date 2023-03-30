@@ -14,12 +14,13 @@ const timer = setInterval(() => {
   }
 }, 1000)
 
-// app.whenReady().then(() => {
-//   globalShortcut.register('CmdOrCtrl+D', () => {
-//     const text = clipboard.readText()
-//     popoverObj.showPopover(text)
-//   })
-// })
+app.whenReady().then(() => {
+  // globalShortcut.register('CmdOrCtrl+X+C', () => {
+  //   // const text = clipboard.readText()
+  //   // // popoverObj.showPopover(text)
+  //   // console.log('输出', text)
+  // })
+})
 
 app.on('will-quit', () => {
   clearInterval(timer)

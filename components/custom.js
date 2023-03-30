@@ -33,10 +33,12 @@ function createWindow() {
 
 function customShowPopover() {
   const mousePosition = screen.getCursorScreenPoint()
-  const { width, height } = mainWindow.getBounds()
+  if (mainWindow) {
+    const { width, height } = mainWindow.getBounds()
 
-  mainWindow.setPosition(mousePosition.x, mousePosition.y - height)
-  mainWindow.show()
+    mainWindow.setPosition(mousePosition.x, mousePosition.y - height)
+    mainWindow.show()
+  }
 }
 
 function customHidePopover() {

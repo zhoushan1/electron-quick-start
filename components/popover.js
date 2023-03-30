@@ -137,12 +137,14 @@ function createPopover() {
 
 function showPopover(text) {
   const mousePosition = screen.getCursorScreenPoint()
-  const { width, height } = popoverWindow.getBounds()
+  if (popoverWindow) {
+    const { width, height } = popoverWindow.getBounds()
 
-  popoverWindow.setPosition(mousePosition.x, mousePosition.y - height)
-  popoverWindow.show()
-  console.log('复制内容:', text)
-  copyText = text
+    popoverWindow.setPosition(mousePosition.x, mousePosition.y - height)
+    popoverWindow.show()
+    console.log('复制内容:', text)
+    copyText = text
+  }
 }
 
 function destroyPopover() {
