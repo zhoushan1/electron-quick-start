@@ -16,11 +16,11 @@ window.onload = () => {
   const codeExplainButton = document.getElementById('codeExplain')
   const addButton = document.getElementById('add')
   const delButton = document.getElementById('del')
+  const delAllButton = document.getElementById('delAll')
   const listButton = document.getElementById('custom-btn-list')
 
-  const localList = store.get('localCustomList')
-    ? JSON.parse(store.get('localCustomList'))
-    : []
+  const localList = store.get('localCustomList') || []
+
   summaryButton.addEventListener('click', () => {
     ipcRenderer.send('summary')
   })
@@ -35,12 +35,15 @@ window.onload = () => {
   })
   delButton.addEventListener('click', () => {
     if (localList.length > 0) {
-      const childElements = document.querySelectorAll('.custom-btn')
-      const lastElement = childElements[childElements.length - 1]
-      listButton.removeChild(lastElement)
       const newList = localList.slice(0, -1)
-      store.set('localCustomList', JSON.stringify(newList))
+      store.set('localCustomList', newList)
+      ipcRenderer.send('reloadPopover')
     }
+  })
+  delAllButton.addEventListener('click', () => {
+    store.clear()
+    store.set('localCustomList', [])
+    ipcRenderer.send('reloadPopover')
   })
 
   if (localList.length > 0) {

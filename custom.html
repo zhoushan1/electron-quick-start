@@ -37,9 +37,7 @@
         window.getPrompt = () => prompt.value
         title.value = ''
         prompt.value = ''
-        const localList = store.get('localCustomList')
-          ? JSON.parse(store.get('localCustomList'))
-          : []
+        const localList = store.get('localCustomList') || []
         save.addEventListener('click', () => {
           const title = getTitle()
           const content = getPrompt()
@@ -48,7 +46,7 @@
               name: title,
               content: content,
             })
-            store.set('localCustomList', JSON.stringify(localList))
+            store.set('localCustomList', localList)
             ipcRenderer.send('save')
           }
         })

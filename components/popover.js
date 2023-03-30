@@ -65,9 +65,7 @@ ipcMain.on('save', (event, arg) => {
 })
 
 ipcMain.on('customBtnClick', (event, arg) => {
-  const localList = store.get('localCustomList')
-    ? JSON.parse(store.get('localCustomList'))
-    : []
+  const localList = store.get('localCustomList') || []
   const curItem = localList[arg]
   console.log('自定义按钮', curItem)
   fetchData({
@@ -75,6 +73,10 @@ ipcMain.on('customBtnClick', (event, arg) => {
     handler: setSummaryTextArea,
   })
   showSummaryPopover(copyText)
+})
+
+ipcMain.on('reloadPopover', (event, arg) => {
+  popoverWindow.reload()
 })
 
 function fetchData({ prompt, handler }) {
