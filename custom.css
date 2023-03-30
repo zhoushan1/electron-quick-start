@@ -1,0 +1,22 @@
+.custom {
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: flex;
+}
+
+.custom-left {
+  border: 1px solid #ccc;
+  width: 150px;
+  margin-right: 10px;
+  padding: 10px;
+}
+.custom-right {
+  border: 1px solid #ccc;
+  flex: 1;
+  padding: 10px;
+}
+
+.custom-btn {
+  display: flex;
+  justify-content: space-between;
+}

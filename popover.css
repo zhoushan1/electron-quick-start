@@ -1,8 +1,25 @@
 .popover-wrap {
-  display: flex;
-  align-items: center;
-  width: 100%;
+  /* display: flex;
+  align-items: center; */
+  /* width: 270px; */
   background-color: #fff;
   color: #333;
-  gap: 8px;
+}
+.add-wrap {
+  margin-bottom: 4px;
+}
+.action {
+  margin-right: 10px;
+}
+.popover-btn-list {
+  display: flex;
+}
+.custom-btn-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  margin-right: 8px;
+  margin-bottom: 8px;
 }

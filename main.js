@@ -1,6 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+
+const ElectronStore = require('electron-store')
+ElectronStore.initRenderer()
 // const scratchWords = require('./components/scratch-words')
 require('./components/scratch-words')
 require('./components/popover')

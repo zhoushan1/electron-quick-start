@@ -17,10 +17,10 @@ const {
 } = require('../secret/constant.js')
 const translateComponent = require('./translate.js')
 const { showSummaryPopover, setSummaryTextArea } = require('./summary.js')
+const { customShowPopover, customHidePopover } = require('./custom')
+const Store = require('electron-store')
 
-// process.on('uncaughtException', function (error) {
-//   console.error('catch uncaughtException', error)
-// })
+const store = new Store()
 
 let popoverWindow
 let copyText = ''
@@ -47,6 +47,31 @@ ipcMain.on('codeExplain', (event, arg) => {
   console.log('代码解析', copyText)
   fetchData({
     prompt: `Reply in Chinese.Explain the following code:\n ${copyText}`,
+    handler: setSummaryTextArea,
+  })
+  showSummaryPopover(copyText)
+})
+
+ipcMain.on('add', (event, arg) => {
+  customShowPopover()
+})
+
+ipcMain.on('cancel', (event, arg) => {
+  customHidePopover()
+})
+ipcMain.on('save', (event, arg) => {
+  popoverWindow.reload()
+  customHidePopover()
+})
+
+ipcMain.on('customBtnClick', (event, arg) => {
+  const localList = store.get('localCustomList')
+    ? JSON.parse(store.get('localCustomList'))
+    : []
+  const curItem = localList[arg]
+  console.log('自定义按钮', curItem)
+  fetchData({
+    prompt: `${curItem.content}: \n ${copyText}`,
     handler: setSummaryTextArea,
   })
   showSummaryPopover(copyText)
@@ -89,8 +114,8 @@ function fetchData({ prompt, handler }) {
 function createPopover() {
   console.log('Creating Popover666')
   popoverWindow = new BrowserWindow({
-    width: 200,
-    height: 50,
+    width: 280,
+    height: 70,
     // transparent: true,
     frame: false,
     // alwaysOnTop: true,
@@ -106,6 +131,7 @@ function createPopover() {
 
   popoverWindow.on('blur', () => {
     popoverWindow.hide()
+    // destroyPopover()
   })
 }
 
@@ -117,6 +143,10 @@ function showPopover(text) {
   popoverWindow.show()
   console.log('复制内容:', text)
   copyText = text
+}
+
+function destroyPopover() {
+  popoverWindow.destroy()
 }
 
 app.whenReady().then(() => {
@@ -133,4 +163,5 @@ app.on('window-all-closed', () => {
 module.exports = {
   createPopover,
   showPopover,
+  destroyPopover,
 }

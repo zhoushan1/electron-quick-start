@@ -12,9 +12,16 @@
   </head>
   <body>
     <div class="popover-wrap" id="root">
-      <button id="summary">AI总结</button>
-      <button id="translate">翻译</button>
-      <button id="codeExplain">代码释义</button>
+      <div class="add-wrap">
+        <button id="add" class="action">+</button
+        ><button id="del" class="action">-</button>
+      </div>
+      <div class="popover-btn-list" id="popover-btn-list">
+        <button id="summary" class="btn">AI总结</button>
+        <button id="translate" class="btn">翻译</button>
+        <button id="codeExplain" class="btn">代码释义</button>
+        <span id="custom-btn-list"></span>
+      </div>
     </div>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>

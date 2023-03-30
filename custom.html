@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>自定义</title>
+    <link href="./custom.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="custom">
+      <div class="custom-right">
+        <div>名称</div>
+        <div>
+          <input type="text" class="input" id="title" placeholder="名称" />
+        </div>
+        <div>提示词</div>
+        <textarea id="prompt"></textarea>
+        <div class="custom-btn">
+          <button id="cancel">取消</button>
+          <button id="save">保存</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // 在文本改变时将文本内容发送给主进程
+      const { ipcRenderer } = require('electron')
+      const Store = require('electron-store')
+
+      const store = new Store()
+      window.onload = () => {
+        const title = document.getElementById('title')
+        const prompt = document.getElementById('prompt')
+        const save = document.getElementById('save')
+        const cancel = document.getElementById('cancel')
+        const addBtn = document.getElementById('addItem')
+        const btnList = document.getElementById('buttonList')
+        window.getTitle = () => title.value
+        window.getPrompt = () => prompt.value
+        title.value = ''
+        prompt.value = ''
+        const localList = store.get('localCustomList')
+          ? JSON.parse(store.get('localCustomList'))
+          : []
+        save.addEventListener('click', () => {
+          const title = getTitle()
+          const content = getPrompt()
+          if (title && content) {
+            localList.push({
+              name: title,
+              content: content,
+            })
+            store.set('localCustomList', JSON.stringify(localList))
+            ipcRenderer.send('save')
+          }
+        })
+        cancel.addEventListener('click', () => {
+          ipcRenderer.send('cancel')
+        })
+
+        // addBtn.addEventListener('click', () => {
+        //   const item = {
+        //     name: 'test',
+        //     content: '',
+        //   }
+        //   list.push(item)
+        //   console.log('2222', list)
+        //   const li = document.createElement('div')
+        //   li.innerText = item.name
+        //   btnList.appendChild(li)
+        //   // for (let i = 0; i < list.length; i++) {
+        //   //   const li = document.createElement('li')
+        //   //   li.innerText = list[i].name
+        //   //   btnList.appendChild(li)
+        //   // }
+        // })
+      }
+    </script>
+  </body>
+</html>

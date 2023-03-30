@@ -14,6 +14,13 @@ const timer = setInterval(() => {
   }
 }, 1000)
 
+// app.whenReady().then(() => {
+//   globalShortcut.register('CmdOrCtrl+D', () => {
+//     const text = clipboard.readText()
+//     popoverObj.showPopover(text)
+//   })
+// })
+
 app.on('will-quit', () => {
   clearInterval(timer)
   // 注销全局快捷键
