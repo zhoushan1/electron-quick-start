@@ -121,8 +121,8 @@ function fetchData({ prompt, handler }) {
 function createPopover() {
   console.log('Creating Popover666')
   popoverWindow = new BrowserWindow({
-    width: 280,
-    height: 70,
+    width: 480,
+    height: 76,
     // transparent: true,
     frame: false,
     // alwaysOnTop: true,
@@ -133,7 +133,6 @@ function createPopover() {
       enableRemoteModule: true,
     },
   })
-  popoverWindow.setSize(280, 70)
 
   popoverWindow.loadFile('popover.html')
 
