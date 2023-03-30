@@ -128,6 +128,7 @@ function createPopover() {
       enableRemoteModule: true,
     },
   })
+  popoverWindow.setSize(280, 70)
 
   popoverWindow.loadFile('popover.html')
 
