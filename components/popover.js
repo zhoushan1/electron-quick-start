@@ -16,7 +16,11 @@ const {
   CHAT_URl,
 } = require('../secret/constant.js')
 const translateComponent = require('./translate.js')
-const { showSummaryPopover, setSummaryTextArea } = require('./summary.js')
+const {
+  showSummaryPopover,
+  setSummaryTextArea,
+  setSummaryTitle,
+} = require('./summary.js')
 const { customShowPopover, customHidePopover } = require('./custom')
 const Store = require('electron-store')
 
@@ -73,6 +77,7 @@ ipcMain.on('customBtnClick', (event, arg) => {
     handler: setSummaryTextArea,
   })
   showSummaryPopover(copyText)
+  setSummaryTitle(curItem.name)
 })
 
 ipcMain.on('reloadPopover', (event, arg) => {

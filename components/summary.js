@@ -24,7 +24,7 @@ function createWindow() {
   })
 }
 
-function showSummaryPopover(text) {
+function showSummaryPopover() {
   const mousePosition = screen.getCursorScreenPoint()
   if (mainWindow) {
     const { width, height } = mainWindow.getBounds()
@@ -58,7 +58,12 @@ const setSummaryTextArea = (text) => {
   )
 }
 
+const setSummaryTitle = (text) => {
+  mainWindow.webContents.executeJavaScript(`window.setTitle('${text}')`)
+}
+
 module.exports = {
   setSummaryTextArea,
   showSummaryPopover,
+  setSummaryTitle,
 }
