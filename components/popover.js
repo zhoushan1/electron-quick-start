@@ -21,7 +21,12 @@ const {
   setSummaryTextArea,
   setSummaryTitle,
 } = require('./summary.js')
-const { customShowPopover, customHidePopover } = require('./custom')
+const {
+  customShowPopover,
+  customHidePopover,
+  setCusTitle,
+  setCusPrompt,
+} = require('./custom')
 const Store = require('electron-store')
 
 const store = new Store()

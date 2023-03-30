@@ -35,6 +35,14 @@
         const btnList = document.getElementById('buttonList')
         window.getTitle = () => title.value
         window.getPrompt = () => prompt.value
+
+        window.setCustomTitle = (text) => {
+          title.value = text
+        }
+        window.setCustomPrompt = (text) => {
+          prompt.value = text
+        }
+        window.getPrompt = () => prompt.value
         title.value = ''
         prompt.value = ''
         const localList = store.get('localCustomList') || []

@@ -38,6 +38,8 @@ function customShowPopover() {
 
     mainWindow.setPosition(mousePosition.x, mousePosition.y - height)
     mainWindow.show()
+    setCusTitle('')
+    setCusPrompt('')
   }
 }
 
@@ -74,6 +76,14 @@ const getPrompt = () => {
   return mainWindow.webContents.executeJavaScript('window.getPrompt()')
 }
 
+const setCusTitle = (text) => {
+  mainWindow.webContents.executeJavaScript(`window.setCustomTitle('${text}')`)
+}
+
+const setCusPrompt = (text) => {
+  mainWindow.webContents.executeJavaScript(`window.setCustomPrompt('${text}')`)
+}
+
 // const setText = (text) => {
 //   mainWindow.webContents.executeJavaScript(`window.setText('${text}')`)
 // }
@@ -92,4 +102,6 @@ module.exports = {
   customHidePopover,
   getTitle,
   getPrompt,
+  setCusTitle,
+  setCusPrompt,
 }
