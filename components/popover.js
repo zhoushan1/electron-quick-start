@@ -95,6 +95,7 @@ function fetchData({ prompt, handler }) {
   const data = {
     messages: [{ role: 'user', content: prompt }],
     model: 'gpt-3.5-turbo',
+    temperature: 0.1,
   }
 
   const options = {
