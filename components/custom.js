@@ -26,9 +26,9 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-  mainWindow.on('blur', () => {
-    mainWindow.hide()
-  })
+  // mainWindow.on('blur', () => {
+  //   mainWindow.hide()
+  // })
 }
 
 function customShowPopover() {
@@ -69,33 +69,30 @@ app.on('window-all-closed', () => {
 
 // 在主进程中提供获取和设置TextArea值的API
 const getTitle = () => {
-  return mainWindow.webContents.executeJavaScript('window.getTitle()')
+  return mainWindow
+    ? mainWindow.webContents.executeJavaScript('window.getTitle()')
+    : ''
 }
 
 const getPrompt = () => {
-  return mainWindow.webContents.executeJavaScript('window.getPrompt()')
+  return mainWindow
+    ? mainWindow.webContents.executeJavaScript('window.getPrompt()')
+    : ''
 }
 
 const setCusTitle = (text) => {
-  mainWindow.webContents.executeJavaScript(`window.setCustomTitle('${text}')`)
+  if (mainWindow) {
+    mainWindow.webContents.executeJavaScript(`window.setCustomTitle('${text}')`)
+  }
 }
 
 const setCusPrompt = (text) => {
-  mainWindow.webContents.executeJavaScript(`window.setCustomPrompt('${text}')`)
+  if (mainWindow) {
+    mainWindow.webContents.executeJavaScript(
+      `window.setCustomPrompt('${text}')`
+    )
+  }
 }
-
-// const setText = (text) => {
-//   mainWindow.webContents.executeJavaScript(`window.setText('${text}')`)
-// }
-
-// // 在主进程中提供获取和设置TextArea值的API
-// const getToText = () => {
-//   return mainWindow.webContents.executeJavaScript('window.getToText()')
-// }
-
-// const setToText = (text) => {
-//   mainWindow.webContents.executeJavaScript(`window.setToText('${text}')`)
-// }
 
 module.exports = {
   customShowPopover,

@@ -22,9 +22,9 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-  mainWindow.on('blur', () => {
-    mainWindow.hide()
-  })
+  // mainWindow.on('blur', () => {
+  //   mainWindow.hide()
+  // })
 }
 
 function showTransPopover(text) {
@@ -61,20 +61,28 @@ app.on('window-all-closed', () => {
 
 // 在主进程中提供获取和设置TextArea值的API
 const getText = () => {
-  return mainWindow.webContents.executeJavaScript('window.getText()')
+  return mainWindow
+    ? mainWindow.webContents.executeJavaScript('window.getText()')
+    : ''
 }
 
 const setText = (text) => {
-  mainWindow.webContents.executeJavaScript(`window.setText('${text}')`)
+  if (mainWindow) {
+    mainWindow.webContents.executeJavaScript(`window.setText('${text}')`)
+  }
 }
 
 // 在主进程中提供获取和设置TextArea值的API
 const getToText = () => {
-  return mainWindow.webContents.executeJavaScript('window.getToText()')
+  return mainWindow
+    ? mainWindow.webContents.executeJavaScript('window.getToText()')
+    : ''
 }
 
 const setToText = (text) => {
-  mainWindow.webContents.executeJavaScript(`window.setToText('${text}')`)
+  if (mainWindow) {
+    mainWindow.webContents.executeJavaScript(`window.setToText('${text}')`)
+  }
 }
 
 module.exports = {

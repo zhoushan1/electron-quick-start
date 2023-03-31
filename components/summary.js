@@ -19,9 +19,9 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-  mainWindow.on('blur', () => {
-    mainWindow.hide()
-  })
+  // mainWindow.on('blur', () => {
+  //   mainWindow.hide()
+  // })
 }
 
 function showSummaryPopover() {
@@ -53,13 +53,17 @@ app.on('activate', () => {
 })
 
 const setSummaryTextArea = (text) => {
-  mainWindow.webContents.executeJavaScript(
-    `window.setSummaryTextArea('${text}')`
-  )
+  if (mainWindow) {
+    mainWindow.webContents.executeJavaScript(
+      `window.setSummaryTextArea('${text}')`
+    )
+  }
 }
 
 const setSummaryTitle = (text) => {
-  mainWindow.webContents.executeJavaScript(`window.setTitle('${text}')`)
+  if (mainWindow) {
+    mainWindow.webContents.executeJavaScript(`window.setTitle('${text}')`)
+  }
 }
 
 module.exports = {
