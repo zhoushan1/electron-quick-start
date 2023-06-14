@@ -33,7 +33,7 @@
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0",
-    "openai": "^3.2.1",
+    "openai": "^3.3.0",
     "request": "^2.88.2"
   }
 }
